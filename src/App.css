@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+body {
+    text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
+  background: rgb(52, 52, 236);
+  height: 80px;
+  color: #fff;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.card {
+    box-shadow: 3px 3px 3px 3px grey;
+    margin: 20px;
+    padding: 10px;
+    width: 250px;
+    height: 350px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card div {
+    margin-top: 10px;
+}
+
+.card-block {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header input {
+    height: 33px;
+    width: 700px;
+}
+
+.navbar {
+    position: absolute;
+    color: black;
+    background: rgb(241, 239, 239);
+    opacity: 0.9;
+    width: 300px;
+    height: 100%;
+    box-shadow: 3px 3px 3px 3px gray;
+    padding: 10px;
+}
+
+.navbar div {
+    padding: 20px;
+}
+
+.navbar div:hover {
+    background: rgb(62, 62, 218);
+}
+
+.active {
+    background: rgb(62, 62, 218);
+}
+
+.card-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-icon {
+    margin-right: 20px;
+}
+
+.favoriteIconHeader {
+    margin-right: 45px;
 }
