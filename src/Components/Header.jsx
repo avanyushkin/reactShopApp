@@ -1,4 +1,5 @@
 import FavoriteIcon from './FavoriteIcon'
+import { Link } from 'react-router-dom'
 
 function Header( {handleInput, handleMenu} ) {
   return (
@@ -14,9 +15,11 @@ function Header( {handleInput, handleMenu} ) {
 </svg>
         </div>
         <input onChange={(e) => handleInput(e.target.value)} />
-        <div className='favoriteIconHeader'>
-            <FavoriteIcon />
-        </div>
+        <Link to='/favorite'>
+          <div className='favoriteIconHeader'>
+              <FavoriteIcon />
+          </div>
+        </Link>
       </div>
     </>
   );

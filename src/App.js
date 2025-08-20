@@ -3,6 +3,9 @@ import Header from './Components/Header.jsx'
 import Card from './Components/Card.jsx'
 import { useState } from 'react'
 import Navbar from './Components/Navbar.jsx'
+import { Route, Routes } from 'react-router-dom'
+import Main from './Main.jsx'
+import FavoritePage from './FavoritePage.jsx'
 
 const products = [{
   id: 1,
@@ -165,27 +168,28 @@ function App() {
     (it) => it.category.includes(category) && it.name.includes(filteredName)
   );
 
+  const favoriteProducts = products.filter(product => favoriteIds.includes(product.id));
+
   return (
     <>
-      <Header handleInput={handleInput} handleMenu={handleMenu} />
-      {isOpenedMenu && (
-        <Navbar handleChangeCategory={handleChangeCategory} category={category}/>
-      )}
-      <div className='card-block'>
-        {filteredProducts.map((el) => {
-          return (
-            <Card
-              favoriteIds={favoriteIds}
-              addToFavorites={addToFavorites}
-              id={el.id}
-              brand={el.brand}
-              name={el.name}
-              price={el.price}
-              rating={el.rating}
-              img={el.img} />
-          );
-        })}
-      </div>
+      <Routes>
+        <Route path='/' element={<>
+          <Main
+          isOpenedMenu={isOpenedMenu}
+          handleChangeCategory={handleChangeCategory}
+          category={category}
+          handleInput={handleInput}
+          handleMenu={handleMenu}
+          filteredProducts={filteredProducts}
+          favoriteIds={favoriteIds}
+          addToFavorites={addToFavorites} />
+        </>}/>
+        
+        <Route path='/favorite' element={<>
+          <FavoritePage favoriteProducts={favoriteProducts} />
+        </>}/>
+        
+      </Routes>
     </>
   );
 }
