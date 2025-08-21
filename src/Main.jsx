@@ -8,17 +8,19 @@ function Main( {
     category,
     handleInput,
     handleMenu,
-    filteredProducts,
+    products,
     favoriteIds,
-    addToFavorites} ) {
+    addToFavorites,
+    loading} ) {
   return (
     <>
     <Header handleInput={handleInput} handleMenu={handleMenu} />
+    {loading && <h1>Loading...</h1>}
       {isOpenedMenu && (
         <Navbar handleChangeCategory={handleChangeCategory} category={category}/>
       )}
       <div className='card-block'>
-        {filteredProducts.map((el) => {
+        {products.map((el) => {
           return (
             <Card
               favoriteIds={favoriteIds}
@@ -28,7 +30,9 @@ function Main( {
               name={el.name}
               price={el.price}
               rating={el.rating}
-              img={el.img} />
+              img={el.img}
+              category={el.category}
+              />
           );
         })}
       </div>

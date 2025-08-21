@@ -1,133 +1,66 @@
 import './App.css'
 import Header from './Components/Header.jsx'
 import Card from './Components/Card.jsx'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './Components/Navbar.jsx'
 import { Route, Routes } from 'react-router-dom'
 import Main from './Main.jsx'
 import FavoritePage from './FavoritePage.jsx'
 
-const products = [{
-  id: 1,
-  brand: 'samsung',
-  name: 'samsung s25 ultra',
-  price: 300,
-  category:
-    'phone',
-  rating: 5,
-  img: 'https://m.media-amazon.com/images/I/71yUVEekQWL._AC_SX679_.jpg'
-},
-{
-  id: 2,
-  brand: 'apple',
-  name: 'iphone 13',
-  price: 400,
-  category: 'phone',
-  rating: 5,
-  img: 'https://m.media-amazon.com/images/I/61VuVU94RnL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-},
-{
-  id: 3,
-  brand: 'apple',
-  name: 'iphone 14 pro',
-  price: 1000,
-  category: 'phone',
-  rating: 4,
-  img: 'https://m.media-amazon.com/images/I/41al5-lNvML._AC_SX679_.jpg'
-},
-{
-  id: 4,
-  brand: 'HP',
-  name: 'HP 14',
-  price: 900,
-  category: 'laptop',
-  rating: 5,
-  img: 'https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX466_.jpg'
-},
-{
-  id: 5,
-  brand: 'Philips',
-  name: 'Philips 22 Class Thin Full HD',
-  price: 1300,
-  category: 'monitor',
-  rating: 4,
-  img: 'https://m.media-amazon.com/images/I/71RTruFctrL._AC_SX466_.jpg'
-},
-{
-  id: 6,
-  brand: 'samsung',
-  name: 'samsung s25 ultra',
-  price: 300,
-  category:
-    'phone',
-  rating: 5,
-  img: 'https://m.media-amazon.com/images/I/71yUVEekQWL._AC_SX679_.jpg'
-},
-{
-  id: 7,
-  brand: 'apple',
-  name: 'iphone 13',
-  price: 400,
-  category: 'phone',
-  rating: 5,
-  img: 'https://m.media-amazon.com/images/I/61VuVU94RnL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-},
-{
-  id: 8,
-  brand: 'apple',
-  name: 'iphone 14 pro',
-  price: 1000,
-  category: 'phone',
-  rating: 4,
-  img: 'https://m.media-amazon.com/images/I/41al5-lNvML._AC_SX679_.jpg'
-},
-{
-  id: 9,
-  brand: 'HP',
-  name: 'HP 14',
-  price: 900,
-  category: 'laptop',
-  rating: 5,
-  img: 'https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX466_.jpg'
-},
-{
-  id: 10,
-  brand: 'Philips',
-  name: 'Philips 22 Class Thin Full HD',
-  price: 1300,
-  category: 'monitor',
-  rating: 4,
-  img: 'https://m.media-amazon.com/images/I/71RTruFctrL._AC_SX466_.jpg'
-},
-{
-  id: 11,
-  brand: 'apple',
-  name: 'iphone 14 pro',
-  price: 1000,
-  category: 'phone',
-  rating: 4,
-  img: 'https://m.media-amazon.com/images/I/41al5-lNvML._AC_SX679_.jpg'
-},
-{
-  id: 12,
-  brand: 'HP',
-  name: 'HP 14',
-  price: 900,
-  category: 'laptop',
-  rating: 5,
-  img: 'https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX466_.jpg'
-},
-
-];
-
 function App() {
+  const [products, setProducts] = useState([]);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [filteredName, setFilteredName] = useState('');
   const [isOpenedMenu, setIsOpenedMenu] = useState(false);
 
   const [category, setCategory] = useState('');
-  const [favoriteIds, setFavoriteIds] = useState([]);
+//  const [favoriteIds, setFavoriteIds] = useState([]);
 
-  let filteredProducts = [...products];
+//  useEffect(() => {
+//    setLoading(true);
+//    fetch(`http://localhost:5000/products?name_like=${filteredName}&category_like=${category}`)
+//      .then((response) => response.json())
+//      .then((result) => {setLoading(false)
+//                         setProducts(result)
+//                        })
+//      .catch(error => console.log(error))
+//  }, [filteredName, category]);
+  useEffect(() => {
+    setLoading(true);
+    fetch(`http://localhost:5000/products`)
+      .then((response) => response.json())
+      .then((result) => {
+        setLoading(false);
+        
+        let filtered = result;
+        
+        if (filteredName) {
+          filtered = filtered.filter(product => 
+            product.name.toLowerCase().includes(filteredName.toLowerCase())
+          );
+        }
+        
+        if (category) {
+          filtered = filtered.filter(product => 
+            product.category === category
+          );
+        }
+        
+        setProducts(filtered);
+      })
+      .catch(error => console.log(error))
+  }, [filteredName, category]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/favorites`)
+      .then((response) => response.json())
+      .then((result) => {
+        setFavoriteProducts(result);
+      })
+      .catch((error) => console.log(error))
+  }, [])
 
   const handleInput = (text) => {
     //console.log(text);
@@ -148,27 +81,24 @@ function App() {
     }
   }
 
-  const addToFavorites = (id) => {
+  const addToFavorites = (product) => {
     // console.log(id);
-    if (!favoriteIds.includes(id)) {
-      setFavoriteIds([...favoriteIds, id]);
-    } else {
-      setFavoriteIds(favoriteIds.filter((it) => it !== id));
-    }
+//    if (!favoriteIds.includes(id)) {
+//      setFavoriteIds([...favoriteIds, id]);
+//    } else {
+//      setFavoriteIds(favoriteIds.filter((it) => it !== id));
+//    }
+    fetch('http://localhost:5000/favorites', {
+      method: "POST",
+      body: JSON.stringify(product),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
   }
-  console.log(favoriteIds);
+//  console.log(favoriteIds);
 
-  /*
-  if (filteredName !== '') {
-    filteredProducts = products.filter((it) => it.name.includes(filteredName));
-  }
-  */
-
-  filteredProducts = products.filter(
-    (it) => it.category.includes(category) && it.name.includes(filteredName)
-  );
-
-  const favoriteProducts = products.filter(product => favoriteIds.includes(product.id));
+  // const favoriteProducts = products.filter(product => favoriteIds.includes(product.id));
 
   return (
     <>
@@ -180,9 +110,11 @@ function App() {
           category={category}
           handleInput={handleInput}
           handleMenu={handleMenu}
-          filteredProducts={filteredProducts}
-          favoriteIds={favoriteIds}
-          addToFavorites={addToFavorites} />
+          products={products}
+//          favoriteIds={favoriteIds}
+          favoriteIds={[]}
+          addToFavorites={addToFavorites}
+          loading={loading} />
         </>}/>
         
         <Route path='/favorite' element={<>
