@@ -27,39 +27,31 @@ function App() {
 //                        })
 //      .catch(error => console.log(error))
 //  }, [filteredName, category]);
-  useEffect(() => {
-    setLoading(true);
-    fetch(`http://localhost:5000/products`)
-      .then((response) => response.json())
-      .then((result) => {
-        setLoading(false);
-        
-        let filtered = result;
-        
-        if (filteredName) {
-          filtered = filtered.filter(product => 
-            product.name.toLowerCase().includes(filteredName.toLowerCase())
-          );
-        }
-        
-        if (category) {
-          filtered = filtered.filter(product => 
-            product.category === category
-          );
-        }
-        
-        setProducts(filtered);
-      })
-      .catch(error => console.log(error))
-  }, [filteredName, category]);
 
   useEffect(() => {
+    setLoading(true)
+    fetch(
+      `http://localhost:5000/products?q=${filteredName}&category_like=${category}`
+    )
+      .then((response) => response.json())
+      .then((result)=> {
+        setLoading(false)
+        setProducts(result)
+      })
+      .catch((error) => console.log(error))
+  }, [filteredName, category])
+
+  const loadFavorites = () => {
     fetch(`http://localhost:5000/favorites`)
       .then((response) => response.json())
       .then((result) => {
         setFavoriteProducts(result);
       })
       .catch((error) => console.log(error))
+  }
+
+  useEffect(() => {
+    loadFavorites()
   }, [])
 
   const handleInput = (text) => {
@@ -81,21 +73,61 @@ function App() {
     }
   }
 
-  const addToFavorites = (product) => {
-    // console.log(id);
-//    if (!favoriteIds.includes(id)) {
-//      setFavoriteIds([...favoriteIds, id]);
-//    } else {
-//      setFavoriteIds(favoriteIds.filter((it) => it !== id));
-//    }
-    fetch('http://localhost:5000/favorites', {
-      method: "POST",
-      body: JSON.stringify(product),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+const addToFavorites = async (product) => {
+  try {
+    console.log('=== DEBUG INFO ===');
+    console.log('Product ID:', product.id);
+    console.log('Product:', product);
+    
+    const response = await fetch('http://localhost:5000/favorites');
+    if (!response.ok) {
+      throw new Error('Failed to fetch favorites');
+    }
+    const currentFavorites = await response.json();
+    
+    console.log('All favorites from server:', currentFavorites);
+    console.log('Favorites IDs:', currentFavorites.map(f => f.id));
+    
+    const favoriteItem = currentFavorites.find((el) => el.id === product.id);
+    
+    console.log('Found favorite item:', favoriteItem);
+    
+    if (favoriteItem) {
+      console.log('Attempting to delete favorite with ID:', favoriteItem.id);
+      
+      const deleteResponse = await fetch(`http://localhost:5000/favorites/${favoriteItem.id}`, {
+        method: "DELETE",
+      });
+      
+      if (!deleteResponse.ok) {
+        console.error('Delete failed with status:', deleteResponse.status);
+        console.error('URL attempted:', `http://localhost:5000/favorites/${favoriteItem.id}`);
+        throw new Error('Failed to delete favorite');
+      }
+      
+      console.log('Successfully removed from favorites');
+      loadFavorites();
+    } else {
+      console.log('Product not in favorites, adding...');
+      const addResponse = await fetch('http://localhost:5000/favorites', {
+        method: "POST",
+        body: JSON.stringify(product),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
+      if (!addResponse.ok) {
+        throw new Error('Failed to add favorite');
+      }
+      
+      console.log('Successfully added to favorites');
+      loadFavorites();
+    }
+  } catch (error) {
+    console.error('Error in addToFavorites:', error);
   }
+}
 //  console.log(favoriteIds);
 
   // const favoriteProducts = products.filter(product => favoriteIds.includes(product.id));
@@ -112,7 +144,7 @@ function App() {
           handleMenu={handleMenu}
           products={products}
 //          favoriteIds={favoriteIds}
-          favoriteIds={[]}
+          favoriteIds={favoriteProducts.map(i => i.id)}
           addToFavorites={addToFavorites}
           loading={loading} />
         </>}/>

@@ -25,13 +25,7 @@ function Main( {
             <Card
               favoriteIds={favoriteIds}
               addToFavorites={addToFavorites}
-              id={el.id}
-              brand={el.brand}
-              name={el.name}
-              price={el.price}
-              rating={el.rating}
-              img={el.img}
-              category={el.category}
+              product={el}
               />
           );
         })}

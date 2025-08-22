@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "brand": "samsung",
       "name": "samsung s25 ultra",
       "price": 300,
@@ -10,7 +10,7 @@
       "img": "https://m.media-amazon.com/images/I/71yUVEekQWL._AC_SX679_.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "brand": "apple",
       "name": "iphone 13",
       "price": 400,
@@ -19,7 +19,7 @@
       "img": "https://m.media-amazon.com/images/I/61VuVU94RnL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "brand": "apple",
       "name": "iphone 14 pro",
       "price": 1000,
@@ -28,7 +28,7 @@
       "img": "https://m.media-amazon.com/images/I/41al5-lNvML._AC_SX679_.jpg"
     },
     {
-      "id": 4,
+      "id": "4",
       "brand": "HP",
       "name": "HP 14",
       "price": 900,
@@ -37,97 +37,14 @@
       "img": "https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX466_.jpg"
     },
     {
-      "id": 5,
+      "id": "5",
       "brand": "Philips",
       "name": "Philips 22 Class Thin Full HD",
       "price": 1300,
       "category": "monitor",
       "rating": 4,
       "img": "https://m.media-amazon.com/images/I/71RTruFctrL._AC_SX466_.jpg"
-    },
-    {
-      "id": 6,
-      "brand": "samsung",
-      "name": "samsung s25 ultra",
-      "price": 300,
-      "category": "phone",
-      "rating": 5,
-      "img": "https://m.media-amazon.com/images/I/71yUVEekQWL._AC_SX679_.jpg"
-    },
-    {
-      "id": 7,
-      "brand": "apple",
-      "name": "iphone 13",
-      "price": 400,
-      "category": "phone",
-      "rating": 5,
-      "img": "https://m.media-amazon.com/images/I/61VuVU94RnL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
-    },
-    {
-      "id": 8,
-      "brand": "apple",
-      "name": "iphone 14 pro",
-      "price": 1000,
-      "category": "phone",
-      "rating": 4,
-      "img": "https://m.media-amazon.com/images/I/41al5-lNvML._AC_SX679_.jpg"
-    },
-    {
-      "id": 9,
-      "brand": "HP",
-      "name": "HP 14",
-      "price": 900,
-      "category": "laptop",
-      "rating": 5,
-      "img": "https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX466_.jpg"
-    },
-    {
-      "id": 10,
-      "brand": "Philips",
-      "name": "Philips 22 Class Thin Full HD",
-      "price": 1300,
-      "category": "monitor",
-      "rating": 4,
-      "img": "https://m.media-amazon.com/images/I/71RTruFctrL._AC_SX466_.jpg"
-    },
-    {
-      "id": 11,
-      "brand": "apple",
-      "name": "iphone 14 pro",
-      "price": 1000,
-      "category": "phone",
-      "rating": 4,
-      "img": "https://m.media-amazon.com/images/I/41al5-lNvML._AC_SX679_.jpg"
-    },
-    {
-      "id": 12,
-      "brand": "HP",
-      "name": "HP 14",
-      "price": 900,
-      "category": "laptop",
-      "rating": 5,
-      "img": "https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX466_.jpg"
     }
   ],
-  "favorites": [
-    {
-      "id": "dc0b",
-      "name": "apple",
-      "price": 3000
-    },
-    {
-      "id": "83a4",
-      "name": "apple",
-      "price": 3000
-    },
-    {
-      "id": 2,
-      "name": "iphone 13",
-      "brand": "apple",
-      "rating": 5,
-      "price": 400,
-      "img": "https://m.media-amazon.com/images/I/61VuVU94RnL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-      "category": "phone"
-    }
-  ]
+  "favorites": []
 }
