@@ -16,9 +16,11 @@ function Card( {favoriteIds,
             <div>rating: {rating}</div>
             <div>{price}</div>
           </div>
+          {favoriteIds && (
           <div className='card-icon' onClick = {() => addToFavorites( product )}>
             <FavoriteIcon isFavorite={favoriteIds.includes(id)} />
           </div>
+          )}
         </div>
       </div>
     </>

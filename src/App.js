@@ -73,59 +73,19 @@ function App() {
     }
   }
 
-const addToFavorites = async (product) => {
-  try {
-    console.log('=== DEBUG INFO ===');
-    console.log('Product ID:', product.id);
-    console.log('Product:', product);
-    
-    const response = await fetch('http://localhost:5000/favorites');
-    if (!response.ok) {
-      throw new Error('Failed to fetch favorites');
-    }
-    const currentFavorites = await response.json();
-    
-    console.log('All favorites from server:', currentFavorites);
-    console.log('Favorites IDs:', currentFavorites.map(f => f.id));
-    
-    const favoriteItem = currentFavorites.find((el) => el.id === product.id);
-    
-    console.log('Found favorite item:', favoriteItem);
-    
-    if (favoriteItem) {
-      console.log('Attempting to delete favorite with ID:', favoriteItem.id);
-      
-      const deleteResponse = await fetch(`http://localhost:5000/favorites/${favoriteItem.id}`, {
-        method: "DELETE",
-      });
-      
-      if (!deleteResponse.ok) {
-        console.error('Delete failed with status:', deleteResponse.status);
-        console.error('URL attempted:', `http://localhost:5000/favorites/${favoriteItem.id}`);
-        throw new Error('Failed to delete favorite');
-      }
-      
-      console.log('Successfully removed from favorites');
-      loadFavorites();
-    } else {
-      console.log('Product not in favorites, adding...');
-      const addResponse = await fetch('http://localhost:5000/favorites', {
-        method: "POST",
-        body: JSON.stringify(product),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      
-      if (!addResponse.ok) {
-        throw new Error('Failed to add favorite');
-      }
-      
-      console.log('Successfully added to favorites');
-      loadFavorites();
-    }
-  } catch (error) {
-    console.error('Error in addToFavorites:', error);
+const addToFavorites = (product) => {
+  if (favoriteProducts.some((el) => el.id === product.id)) {
+    fetch(`http://localhost:5000/favorites/${product.id}`, {
+      method: "DELETE",
+    }).then((result) => loadFavorites())
+  } else {
+    fetch('http://localhost:5000/favorites', {
+      method: "POST",
+      body: JSON.stringify(product),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((result) => loadFavorites())
   }
 }
 //  console.log(favoriteIds);

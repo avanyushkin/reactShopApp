@@ -10,12 +10,7 @@ function FavoritePage( {favoriteProducts} ) {
       (favoriteProducts.map((el) => {
           return (
             <Card
-              id={el.id}
-              brand={el.brand}
-              name={el.name}
-              price={el.price}
-              rating={el.rating}
-              img={el.img} />
+              product={el} />
           );
         })) : <h1>Товаров нет</h1>}
         </div>
