@@ -23,6 +23,7 @@ function Main( {
         {products.map((el) => {
           return (
             <Card
+              key={el.id}
               favoriteIds={favoriteIds}
               addToFavorites={addToFavorites}
               product={el}

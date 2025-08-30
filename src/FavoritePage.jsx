@@ -14,8 +14,8 @@ function FavoritePage( {favoriteProducts} ) {
   return (
     <>
       <h1>Favorite Page</h1>
-      {/*<button onClick = {() => dispatch(addPost('new post'))}>add</button>
-      {posts.map(i => (<div>i</div>))}*/}
+      <button onClick = {() => dispatch(addPost('new post'))}>add</button>
+      {posts.map((i) => (<div key={i}>i</div>))}
       
       <div className='card-block'>
       {favoriteProducts.length ?

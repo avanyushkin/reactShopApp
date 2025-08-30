@@ -41,13 +41,24 @@ function App() {
       .catch((error) => console.log(error))
   }, [filteredName, category])
 
-  const loadFavorites = () => {
-    fetch(`http://localhost:5000/favorites`)
+  const loadFavorites = async () => {
+    /* fetch(`http://localhost:5000/favorites`)
       .then((response) => response.json())
       .then((result) => {
         setFavoriteProducts(result);
       })
-      .catch((error) => console.log(error))
+      .catch((error) => console.log(error)) */
+
+      try {
+        const response = await fetch('http://localhost:5000/favorites');
+        const result = await response.json();
+        setFavoriteProducts(result);
+        console.log(result);
+      
+      } catch(err) {
+        console.log(err);
+      }
+
   }
 
   useEffect(() => {
