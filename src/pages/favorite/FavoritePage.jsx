@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Card from './Components/Card.jsx';
+import Card from '../../Components/Card.jsx';
 import { useSelector } from 'react-redux';
 
 function FavoritePage( ) {
