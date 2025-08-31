@@ -14,8 +14,7 @@ function Main( {
     const [isOpenedMenu, setIsOpenedMenu] = useState(false);
 
     const favorites = useSelector((state) => state.favorites.favorites);
-    const {products, loading} = useSelector((state) => state.products.products);
-    console.log(favorites);
+    const {products, loading} = useSelector((state) => state.products);
 
     const dispatch = useDispatch();
     
