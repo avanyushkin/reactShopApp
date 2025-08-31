@@ -6,9 +6,9 @@ import Navbar from './Components/Navbar.jsx'
 import { Route, Routes } from 'react-router-dom'
 import Main from './Main.jsx'
 import FavoritePage from './FavoritePage.jsx'
-import { fetchFavorites } from './favoritesSlice.js'
 import { fetchProducts } from './productsSlice.js'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetchFavorites, addToFavorites, deleteFavorites } from './favoritesSlice.js'
 
 function App() {
   // const [products, setProducts] = useState([]);
@@ -51,19 +51,11 @@ function App() {
     }
   }
 
-const addToFavorites = (product) => {
+const onClickFavorites = (product) => {
   if (favorites.some((el) => el.id === product.id)) {
-    fetch(`http://localhost:5000/favorites/${product.id}`, {
-      method: "DELETE",
-    }).then(() => dispatch(fetchFavorites()))
+    dispatch(deleteFavorites(product.id))
   } else {
-    fetch('http://localhost:5000/favorites', {
-      method: "POST",
-      body: JSON.stringify(product),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => dispatch(fetchFavorites()))
+    dispatch(addToFavorites(product));
   }
 }
 //  console.log(favoriteIds);
@@ -83,7 +75,7 @@ const addToFavorites = (product) => {
           products={products}
 //          favoriteIds={favoriteIds}
           favoriteIds={favorites.map(i => i.id)}
-          addToFavorites={addToFavorites}
+          onClickFavorites={onClickFavorites}
           loading={productsLoading} />
         </>}/>
         

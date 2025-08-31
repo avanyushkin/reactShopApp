@@ -10,7 +10,7 @@ function Main( {
     handleMenu,
     products,
     favoriteIds,
-    addToFavorites,
+    onClickFavorites,
     loading} ) {
   return (
     <>
@@ -25,7 +25,7 @@ function Main( {
             <Card
               key={el.id}
               favoriteIds={favoriteIds}
-              addToFavorites={addToFavorites}
+              onClickFavorites={onClickFavorites}
               product={el}
               />
           );

@@ -1,8 +1,7 @@
 import FavoriteIcon from './FavoriteIcon.jsx'
-import { useState } from 'react'
 
 function Card( {favoriteIds, 
-                addToFavorites,
+                onClickFavorites,
                 product} ) {
   const {name, brand, price, img, rating, id} = product;
   return (
@@ -17,7 +16,7 @@ function Card( {favoriteIds,
             <div>{price}</div>
           </div>
           {favoriteIds && (
-          <div className='card-icon' onClick = {() => addToFavorites( product )}>
+          <div className='card-icon' onClick = {() => onClickFavorites( product )}>
             <FavoriteIcon isFavorite={favoriteIds.includes(id)} />
           </div>
           )}
