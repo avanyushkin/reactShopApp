@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchFavorites = createAsyncThunk(
   'products/fetchFavorites',
-  async (userId, thunkAPI) => {
+  async (params, thunkAPI) => {
     const response = await fetch('http://localhost:5000/favorites');
         const result = await response.json();
         return result;
@@ -42,5 +42,4 @@ export const favoritesSlice = createSlice({
   },
 })
 
-export const { addPost } = favoritesSlice.actions
 export default favoritesSlice.reducer

@@ -7,43 +7,24 @@ import { Route, Routes } from 'react-router-dom'
 import Main from './Main.jsx'
 import FavoritePage from './FavoritePage.jsx'
 import { fetchFavorites } from './favoritesSlice.js'
+import { fetchProducts } from './productsSlice.js'
 import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+  // const [products, setProducts] = useState([]);
   const [filteredName, setFilteredName] = useState('');
   const [isOpenedMenu, setIsOpenedMenu] = useState(false);
-
-  const favorites = useSelector((state) => state.favorites.favorites);
-  
   const [category, setCategory] = useState('');
 
-  const dispatch = useDispatch();
-//  const [favoriteIds, setFavoriteIds] = useState([]);
+  const favorites = useSelector((state) => state.favorites.favorites);
+  const products = useSelector((state) => state.products.products);
+  const productsLoading = useSelector((state) => state.products.loading);
 
-//  useEffect(() => {
-//    setLoading(true);
-//    fetch(`http://localhost:5000/products?name_like=${filteredName}&category_like=${category}`)
-//      .then((response) => response.json())
-//      .then((result) => {setLoading(false)
-//                         setProducts(result)
-//                        })
-//      .catch(error => console.log(error))
-//  }, [filteredName, category]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setLoading(true)
-    fetch(
-      `http://localhost:5000/products?q=${filteredName}&category_like=${category}`
-    )
-      .then((response) => response.json())
-      .then((result)=> {
-        setLoading(false)
-        setProducts(result)
-      })
-      .catch((error) => console.log(error))
+      dispatch(fetchProducts({ filteredName: filteredName, category: category }))
   }, [filteredName, category])
 
   useEffect(() => {
@@ -103,7 +84,7 @@ const addToFavorites = (product) => {
 //          favoriteIds={favoriteIds}
           favoriteIds={favorites.map(i => i.id)}
           addToFavorites={addToFavorites}
-          loading={loading} />
+          loading={productsLoading} />
         </>}/>
         
         <Route path='/favorite' element={<>
