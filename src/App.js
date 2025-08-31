@@ -2,10 +2,11 @@ import './App.css'
 import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Main from './pages/main/Main.jsx'
-import FavoritePage from './pages/favorite/FavoritePage.jsx'
+import FavoritePage from './pages/favorite/index.jsx'
 import { fetchProducts } from './pages/main/productsSlice.js'
 import { useDispatch } from 'react-redux'
 import { fetchFavorites } from './pages/favorite/favoritesSlice.js'
+import { CartPage } from './pages/cart/index.jsx'
 
 function App() {
   // const [products, setProducts] = useState([]);
@@ -45,7 +46,7 @@ function App() {
       setSort('');
       return;
     }
-    
+
     setSort(order);
   }
 
@@ -66,9 +67,16 @@ function App() {
           />
         </>}/>
         
-        <Route path='/favorite' element={<>
-          <FavoritePage />
-        </>}/>
+        <Route path='/favorite' element={
+          <>
+            <FavoritePage />
+          </>
+        }/>
+        <Route path='/cart' element={
+          <>
+            <CartPage />
+          </>
+        }/>
         
       </Routes>
     </>

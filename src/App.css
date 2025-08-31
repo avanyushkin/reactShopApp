@@ -7,7 +7,7 @@ body {
   height: 80px;
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 10px;
   align-items: center;
 }
@@ -65,6 +65,7 @@ body {
 
 .card-icon {
     margin-right: 20px;
+    margin-bottom: 40px;
 }
 
 .favoriteIconHeader {
