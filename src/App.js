@@ -11,12 +11,13 @@ function App() {
   // const [products, setProducts] = useState([]);
   const [filteredName, setFilteredName] = useState('');
   const [category, setCategory] = useState('');
+  const [sort, setSort] = useState('asc');
   
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(fetchProducts({ filteredName: filteredName, category: category }))
-  }, [filteredName, category])
+      dispatch(fetchProducts({ filteredName: filteredName, category: category, sort: sort }))
+  }, [filteredName, category, sort])
 
   useEffect(() => {
     // loadFavorites()
@@ -38,6 +39,15 @@ function App() {
     }
   }
 
+  const handleChangeSort = (order) => {
+    console.log(order);
+    if (sort === order) {
+      setSort('');
+      return;
+    }
+    
+    setSort(order);
+  }
 
 //  console.log(favoriteIds);
 
@@ -48,6 +58,8 @@ function App() {
       <Routes>
         <Route path='/' element={<>
           <Main
+          sort={sort}
+          handleChangeSort={handleChangeSort}
           handleChangeCategory={handleChangeCategory}
           category={category}
           handleInput={handleInput}

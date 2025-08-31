@@ -4,9 +4,11 @@ import Navbar from '../../Components/Navbar.jsx'
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToFavorites, deleteFavorites } from '../favorite/favoritesSlice.js'
-
+import Sort from '../../Components/Sort/Sort.jsx'
 
 function Main( {
+    sort,
+    handleChangeSort,
     handleChangeCategory,
     category,
     handleInput,
@@ -36,6 +38,9 @@ function Main( {
   return (
     <>
     <Header handleInput={handleInput} handleMenu={handleMenu} />
+
+    <Sort handleChangeSort={handleChangeSort} sort={sort}/>
+
     {loading && <h1>Loading...</h1>}
       {isOpenedMenu && (
         <Navbar handleChangeCategory={handleChangeCategory} category={category}/>
