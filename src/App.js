@@ -6,16 +6,21 @@ import Navbar from './Components/Navbar.jsx'
 import { Route, Routes } from 'react-router-dom'
 import Main from './Main.jsx'
 import FavoritePage from './FavoritePage.jsx'
+import { fetchFavorites } from './favoritesSlice.js'
+import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [favoriteProducts, setFavoriteProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [filteredName, setFilteredName] = useState('');
   const [isOpenedMenu, setIsOpenedMenu] = useState(false);
 
+  const favorites = useSelector((state) => state.favorites.favorites);
+  
   const [category, setCategory] = useState('');
+
+  const dispatch = useDispatch();
 //  const [favoriteIds, setFavoriteIds] = useState([]);
 
 //  useEffect(() => {
@@ -41,28 +46,9 @@ function App() {
       .catch((error) => console.log(error))
   }, [filteredName, category])
 
-  const loadFavorites = async () => {
-    /* fetch(`http://localhost:5000/favorites`)
-      .then((response) => response.json())
-      .then((result) => {
-        setFavoriteProducts(result);
-      })
-      .catch((error) => console.log(error)) */
-
-      try {
-        const response = await fetch('http://localhost:5000/favorites');
-        const result = await response.json();
-        setFavoriteProducts(result);
-        console.log(result);
-      
-      } catch(err) {
-        console.log(err);
-      }
-
-  }
-
   useEffect(() => {
-    loadFavorites()
+    // loadFavorites()
+    dispatch(fetchFavorites());
   }, [])
 
   const handleInput = (text) => {
@@ -85,10 +71,10 @@ function App() {
   }
 
 const addToFavorites = (product) => {
-  if (favoriteProducts.some((el) => el.id === product.id)) {
+  if (favorites.some((el) => el.id === product.id)) {
     fetch(`http://localhost:5000/favorites/${product.id}`, {
       method: "DELETE",
-    }).then((result) => loadFavorites())
+    }).then(() => dispatch(fetchFavorites()))
   } else {
     fetch('http://localhost:5000/favorites', {
       method: "POST",
@@ -96,7 +82,7 @@ const addToFavorites = (product) => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((result) => loadFavorites())
+    }).then(() => dispatch(fetchFavorites()))
   }
 }
 //  console.log(favoriteIds);
@@ -115,13 +101,13 @@ const addToFavorites = (product) => {
           handleMenu={handleMenu}
           products={products}
 //          favoriteIds={favoriteIds}
-          favoriteIds={favoriteProducts.map(i => i.id)}
+          favoriteIds={favorites.map(i => i.id)}
           addToFavorites={addToFavorites}
           loading={loading} />
         </>}/>
         
         <Route path='/favorite' element={<>
-          <FavoritePage favoriteProducts={favoriteProducts} />
+          <FavoritePage favoriteProducts={favorites} />
         </>}/>
         
       </Routes>
