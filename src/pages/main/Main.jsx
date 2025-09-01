@@ -8,6 +8,7 @@ import Sort from '../../Components/Sort/Sort.jsx'
 import { addToCart, deleteFromCart } from '../cart/slices/index.js'
 
 function Main( {
+    onClickFavorites,
     sort,
     handleChangeSort,
     handleChangeCategory,
@@ -27,14 +28,6 @@ function Main( {
     const handleMenu = () => {
       // console.log('in handleMenu');
       setIsOpenedMenu(!isOpenedMenu);
-    }
-
-    const onClickFavorites = (product) => {
-      if (favorites.some((el) => el.id === product.id)) {
-        dispatch(deleteFavorites(product.id))
-      } else {
-        dispatch(addToFavorites(product));
-      }
     }
 
     const onClickAddToCart = (product) => {
