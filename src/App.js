@@ -7,9 +7,9 @@ import { fetchProducts } from './pages/main/productsSlice.js'
 import { useDispatch } from 'react-redux'
 import { fetchFavorites } from './pages/favorite/favoritesSlice.js'
 import { CartPage } from './pages/cart/index.jsx'
+import { loadCart } from './pages/cart/slices/index.js'
 
 function App() {
-  // const [products, setProducts] = useState([]);
   const [filteredName, setFilteredName] = useState('');
   const [category, setCategory] = useState('');
   const [sort, setSort] = useState('asc');
@@ -21,8 +21,8 @@ function App() {
   }, [filteredName, category, sort])
 
   useEffect(() => {
-    // loadFavorites()
     dispatch(fetchFavorites());
+    dispatch(loadCart());
   }, [])
 
   const handleInput = (text) => {

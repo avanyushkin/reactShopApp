@@ -2,9 +2,15 @@ import FavoriteIcon from './FavoriteIcon.jsx'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 
 function Card( {favoriteIds, 
+                cartIds,
                 onClickFavorites,
-                product} ) {
+                product,
+                onClickAddToCart  
+              } ) {
   const {name, brand, price, img, rating, id} = product;
+
+  const color = cartIds && cartIds.includes(id) ? 'green' : '#c7c7c7';
+
   return (
     <>
       <div className='card'>
@@ -23,7 +29,9 @@ function Card( {favoriteIds,
               <FavoriteIcon isFavorite={favoriteIds.includes(id)} />
             </div>
             )}
-            <ShoppingCartOutlined style={{fontSize: '40px', color: '#c7c7c7'}}/>
+            {cartIds && (<ShoppingCartOutlined 
+            onClick={() => onClickAddToCart(product)}
+            style={{fontSize: '40px', color: color}}/>)}
           </div>
         </div>
       </div>
