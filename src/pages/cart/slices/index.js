@@ -33,6 +33,20 @@ export const deleteFromCart = createAsyncThunk(
   },
 )
 
+export const updateProductCart = createAsyncThunk(
+  'products/updateProductCart',
+  async (updatedProduct, { dispatch }) => {
+    await fetch(`http://localhost:5000/cart/${updatedProduct.id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedProduct),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    dispatch(loadCart());
+  },
+)
+
 const initialState = {
   cart: [],
 }

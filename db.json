@@ -7,6 +7,7 @@
       "price": 300,
       "category": "phone",
       "rating": 5,
+      "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/71yUVEekQWL._AC_SX679_.jpg"
     },
     {
@@ -16,6 +17,7 @@
       "price": 400,
       "category": "phone",
       "rating": 5,
+      "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/61VuVU94RnL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
     },
     {
@@ -25,6 +27,7 @@
       "price": 1000,
       "category": "phone",
       "rating": 4,
+      "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/41al5-lNvML._AC_SX679_.jpg"
     },
     {
@@ -34,6 +37,7 @@
       "price": 900,
       "category": "laptop",
       "rating": 5,
+      "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX466_.jpg"
     },
     {
@@ -43,28 +47,21 @@
       "price": 1300,
       "category": "monitor",
       "rating": 4,
+      "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/71RTruFctrL._AC_SX466_.jpg"
     }
   ],
   "favorites": [],
   "cart": [
     {
-      "id": "4",
-      "brand": "HP",
-      "name": "HP 14",
-      "price": 900,
-      "category": "laptop",
-      "rating": 5,
-      "img": "https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX466_.jpg"
-    },
-    {
-      "id": "3",
-      "brand": "apple",
-      "name": "iphone 14 pro",
-      "price": 1000,
+      "id": "1",
+      "brand": "samsung",
+      "name": "samsung s25 ultra",
+      "price": 300,
       "category": "phone",
-      "rating": 4,
-      "img": "https://m.media-amazon.com/images/I/41al5-lNvML._AC_SX679_.jpg"
+      "rating": 5,
+      "quantity": 1,
+      "img": "https://m.media-amazon.com/images/I/71yUVEekQWL._AC_SX679_.jpg"
     }
   ]
 }

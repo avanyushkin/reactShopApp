@@ -5,8 +5,8 @@ import './index.css'
 
 export const CartPage = ({ onClickFavorites }) => {
   const { cart } = useSelector((state) => state.cart)
-  let totalPrice = 4567; 
-  let productCount = 34;
+  const totalPrice = cart.reduce((acc, product) => acc + product.quantity * product.price, 0); 
+  const productCount = cart.reduce((acc, product) => acc + product.quantity, 0);
   return (
     <>
       <div className=''>
