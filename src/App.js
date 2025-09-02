@@ -10,6 +10,7 @@ import { CartPage } from './pages/cart/index.jsx'
 import { loadCart } from './pages/cart/slices/index.js'
 import { useSelector } from 'react-redux'
 import { addToFavorites, deleteFavorites } from './pages/favorite/favoritesSlice.js'
+import Product from './pages/product/index.jsx'
 
 
 function App() {
@@ -86,6 +87,13 @@ function App() {
             <FavoritePage />
           </>
         }/>
+
+        <Route path='/product/:id' element={
+          <>
+            <Product />
+          </>
+        }/>
+
         <Route path='/cart' element={
           <>
             <CartPage />

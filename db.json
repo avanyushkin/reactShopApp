@@ -52,16 +52,5 @@
     }
   ],
   "favorites": [],
-  "cart": [
-    {
-      "id": "1",
-      "brand": "samsung",
-      "name": "samsung s25 ultra",
-      "price": 300,
-      "category": "phone",
-      "rating": 5,
-      "quantity": 1,
-      "img": "https://m.media-amazon.com/images/I/71yUVEekQWL._AC_SX679_.jpg"
-    }
-  ]
+  "cart": []
 }

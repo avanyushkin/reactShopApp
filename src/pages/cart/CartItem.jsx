@@ -3,6 +3,7 @@ import './index.css'
 import { updateProductCart } from './slices/index'
 import { DeleteOutlined } from '@ant-design/icons'
 import { deleteFromCart } from './slices/index'
+import { Link } from 'react-router-dom'
 
 function CartItem({ product }) {
   const {name, brand, price, img, id, quantity} = product;  
@@ -26,11 +27,15 @@ function CartItem({ product }) {
   return (
     <>
       <div className='cartItemBlock'>
+        <Link to={`/product/${id}`}>
         <img width={100} height={100} src={img} alt='image' />
+        </Link>
+        <Link to={`/product/${id}`}>
         <div className='cartItemTitle'>
             <h3>{brand}</h3>
             <div>{name}</div>
         </div> 
+        </Link>
         <div className='cartItemPriceWrapper'>
           <div className='cartItemQuantity'>
             <button onClick={handleChangeMinusQuantity}>-</button>
