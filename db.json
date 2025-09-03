@@ -7,6 +7,7 @@
       "price": 300,
       "category": "phone",
       "rating": 5,
+      "description": "A premium Android flagship featuring a powerful camera system with a 200MP main sensor, a built-in S Pen for precision, and a brilliant, adaptive 120Hz display on a durable titanium frame.",
       "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/71yUVEekQWL._AC_SX679_.jpg"
     },
@@ -17,6 +18,7 @@
       "price": 400,
       "category": "phone",
       "rating": 5,
+      "description": " A powerful and capable iPhone with a stunning Super Retina XDR display, the advanced A15 Bionic chip for exceptional performance, and an advanced dual-camera system for incredible photos and videos.",
       "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/61VuVU94RnL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
     },
@@ -27,6 +29,7 @@
       "price": 1000,
       "category": "phone",
       "rating": 4,
+      "description": "Defined by its innovative Dynamic Island, a always-on ProMotion display, and a massive camera upgrade with a 48MP Main sensor, all powered by the cutting-edge A16 Bionic chip.",
       "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/41al5-lNvML._AC_SX679_.jpg"
     },
@@ -37,6 +40,7 @@
       "price": 900,
       "category": "laptop",
       "rating": 5,
+      "description": "A reliable and affordable 14-inch laptop designed for everyday tasks, offering solid performance for work, school, and streaming with a slim and portable design.",
       "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/815uX7wkOZS._AC_SX466_.jpg"
     },
@@ -47,6 +51,7 @@
       "price": 1300,
       "category": "monitor",
       "rating": 4,
+      "description": "A compact 22-inch monitor that delivers sharp Full HD 1080p clarity in a slim, space-saving design, perfect for a clean home office or desktop setup.",
       "quantity": 1,
       "img": "https://m.media-amazon.com/images/I/71RTruFctrL._AC_SX466_.jpg"
     }

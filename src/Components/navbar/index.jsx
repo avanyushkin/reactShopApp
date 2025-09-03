@@ -1,3 +1,4 @@
+import './index.scss'
 
 function Navbar( {handleChangeCategory, category} ) {
     return (

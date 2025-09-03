@@ -1,6 +1,6 @@
-import Header from '../../Components/Header.jsx'
-import Card from '../../Components/Card.jsx'
-import Navbar from '../../Components/Navbar.jsx'
+import Header from '../../Components/header/index.jsx'
+import Card from '../../Components/productCard/index.jsx'
+import Navbar from '../../Components/navbar/index.jsx'
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import Sort from '../../Components/Sort/Sort.jsx'

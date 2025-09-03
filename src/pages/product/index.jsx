@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { loadProduct } from './slices/index'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import './index.css'
+import './index.scss'
 import { ToCartButton } from '../../Components/toCardButton'
 import { ToFavoriteButton } from '../../Components/toFavoriteButton'
 
@@ -25,24 +25,25 @@ function Product() {
     );
   }
 
-  const { name, brand, price, img, rating } = product;
+  const { name, brand, price, img, rating, description } = product;
 
   // dispatch(loadProduct(id));
   return (
     <>
       <div className='productPageBlock'>
-      <img width={400} height={400} src={img} alt='image' />
-        <div className='card-bottom'>
+        <img width={400} height={400} src={img} alt='image' />
+        <div className='productPageContent'>
           <div>
-            <div>{brand}</div>
+            <div><b>{brand}</b></div>
             <div>{name}</div>
             <div>rating: {rating}</div>
-            <div>{price}</div>
+            <div><b>{price}</b></div>
+            <div>{description}</div>
           </div>
-        </div>
-          <div>
+          <div className='productPageIcons'>
             <ToFavoriteButton product={product} />
             <ToCartButton product={product} />
+          </div>
           </div>
       </div>
     </>

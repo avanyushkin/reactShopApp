@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons'
+import './index.scss'
 
 function Header( {handleInput, handleMenu} ) {
   return (

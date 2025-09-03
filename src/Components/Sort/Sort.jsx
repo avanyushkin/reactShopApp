@@ -1,4 +1,4 @@
-import './sort.css'
+import './sort.scss'
 
 function Sort( {handleChangeSort, sort } ) {
   return (

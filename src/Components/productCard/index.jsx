@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { ToFavoriteButton } from './toFavoriteButton/index.jsx'
-import { ToCartButton } from './toCardButton/index.jsx'
+import { ToFavoriteButton } from '../toFavoriteButton/index.jsx'
+import { ToCartButton } from '../toCardButton/index.jsx'
+import './index.scss'
 
 function Card({ product }) {
   const {name, brand, price, img, rating, id} = product;
