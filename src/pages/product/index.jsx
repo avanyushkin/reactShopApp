@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import './index.scss'
 import { ToCartButton } from '../../Components/toCardButton'
 import { ToFavoriteButton } from '../../Components/toFavoriteButton'
+import { ProductComments } from './comments/index.jsx'
 
 function Product() {
 
@@ -46,6 +47,7 @@ function Product() {
           </div>
           </div>
       </div>
+      <ProductComments />
     </>
   )
 }
