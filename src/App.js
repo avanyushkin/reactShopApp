@@ -8,8 +8,6 @@ import { useDispatch } from 'react-redux'
 import { fetchFavorites } from './pages/favorite/favoritesSlice.js'
 import { CartPage } from './pages/cart/index.jsx'
 import { loadCart } from './pages/cart/slices/index.js'
-import { useSelector } from 'react-redux'
-import { addToFavorites, deleteFavorites } from './pages/favorite/favoritesSlice.js'
 import Product from './pages/product/index.jsx'
 
 
@@ -17,7 +15,6 @@ function App() {
   const [filteredName, setFilteredName] = useState('');
   const [category, setCategory] = useState('');
   const [sort, setSort] = useState('asc');
-  const favorites = useSelector((state) => state.favorites.favorites);
     
   const dispatch = useDispatch();
 
@@ -55,25 +52,11 @@ function App() {
     setSort(order);
   }
 
-  const onClickFavorites = (product) => {
-    if (favorites.some((el) => el.id === product.id)) {
-      dispatch(deleteFavorites(product.id))
-    } else {
-      dispatch(addToFavorites(product));
-    }
-  }
-  
-
-//  console.log(favoriteIds);
-
-  // const favoriteProducts = products.filter(product => favoriteIds.includes(product.id));
-
   return (
     <>
       <Routes>
         <Route path='/' element={<>
           <Main
-          onClickFavorites={onClickFavorites}
           sort={sort}
           handleChangeSort={handleChangeSort}
           handleChangeCategory={handleChangeCategory}

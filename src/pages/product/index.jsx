@@ -1,9 +1,10 @@
-import { ShoppingCartOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { loadProduct } from './slices/index'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import './index.css'
+import { ToCartButton } from '../../Components/toCardButton'
+import { ToFavoriteButton } from '../../Components/toFavoriteButton'
 
 function Product() {
 
@@ -40,14 +41,8 @@ function Product() {
           </div>
         </div>
           <div>
-           {/*  {favoriteIds && (
-            <div className='card-icon' onClick = {() => onClickFavorites( product )}>
-              <FavoriteIcon isFavorite={favoriteIds.includes(id)} />
-            </div>
-            )} */}
-            {/* {cartIds && (<ShoppingCartOutlined 
-            onClick={() => onClickAddToCart(product)}
-            style={{fontSize: '40px', color: color}}/>)} */}
+            <ToFavoriteButton product={product} />
+            <ToCartButton product={product} />
           </div>
       </div>
     </>

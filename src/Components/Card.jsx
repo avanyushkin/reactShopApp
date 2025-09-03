@@ -1,16 +1,9 @@
-import FavoriteIcon from './FavoriteIcon.jsx'
-import { ShoppingCartOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import { ToFavoriteButton } from './toFavoriteButton/index.jsx'
+import { ToCartButton } from './toCardButton/index.jsx'
 
-function Card( {favoriteIds, 
-                cartIds,
-                onClickFavorites,
-                product,
-                onClickAddToCart  
-              } ) {
+function Card({ product }) {
   const {name, brand, price, img, rating, id} = product;
-
-  const color = cartIds && cartIds.includes(id) ? 'green' : '#c7c7c7';
 
   return (
     <>
@@ -27,15 +20,9 @@ function Card( {favoriteIds,
             <div>{price}</div>
           </div>
         </Link>
-          <div>
-            {favoriteIds && (
-            <div className='card-icon' onClick = {() => onClickFavorites( product )}>
-              <FavoriteIcon isFavorite={favoriteIds.includes(id)} />
-            </div>
-            )}
-            {cartIds && (<ShoppingCartOutlined 
-            onClick={() => onClickAddToCart(product)}
-            style={{fontSize: '40px', color: color}}/>)}
+          <div className='iconsMainBlock'>
+            <ToFavoriteButton product={product} />
+            <ToCartButton product={product} />
           </div>
         </div>
       </div>
@@ -44,4 +31,3 @@ function Card( {favoriteIds,
 }
 
 export default Card;
-

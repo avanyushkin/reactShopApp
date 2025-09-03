@@ -63,9 +63,12 @@ body {
     justify-content: space-between;
 }
 
-.card-icon {
+.iconsMainBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin-right: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .favoriteIconHeader {
