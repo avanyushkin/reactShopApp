@@ -4,8 +4,11 @@ import Navbar from '../../Components/navbar/index.jsx'
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import Sort from '../../Components/Sort/Sort.jsx'
+import { Drawer } from 'antd'
 
 function Main( {
+    setPrice,
+    price,
     sort,
     handleChangeSort,
     handleChangeCategory,
@@ -21,14 +24,14 @@ function Main( {
   
   return (
     <>
-    <Header handleInput={handleInput} handleMenu={handleMenu} />
-
+      <Header handleInput={handleInput} handleMenu={handleMenu} />
     <Sort handleChangeSort={handleChangeSort} sort={sort}/>
 
     {loading && <h1>Loading...</h1>}
-      {isOpenedMenu && (
-        <Navbar handleChangeCategory={handleChangeCategory} category={category}/>
-      )}
+        <Drawer open={isOpenedMenu} placement='left' onClose={() => setIsOpenedMenu(false)}>
+          <Navbar handleChangeCategory={handleChangeCategory} category={category} setPrice={setPrice} price={price}/>
+        </Drawer>
+
       <div className='card-block'>
         {products.map((el) => {
           return (

@@ -15,12 +15,13 @@ function App() {
   const [filteredName, setFilteredName] = useState('');
   const [category, setCategory] = useState('');
   const [sort, setSort] = useState('asc');
-    
+  const [price, setPrice] = useState({priceFrom: null, priceTo: null});
+  console.log(price);
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(fetchProducts({ filteredName: filteredName, category: category, sort: sort }))
-  }, [filteredName, category, sort])
+      dispatch(fetchProducts({ filteredName: filteredName, category: category, sort: sort, price: price}))
+  }, [filteredName, category, sort, price])
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -57,6 +58,8 @@ function App() {
       <Routes>
         <Route path='/' element={<>
           <Main
+          setPrice={setPrice}
+          price={price}
           sort={sort}
           handleChangeSort={handleChangeSort}
           handleChangeCategory={handleChangeCategory}

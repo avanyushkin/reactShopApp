@@ -3,9 +3,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (params, thunkAPI) => {
-    const {filteredName, category, sort} = params;
+    const {filteredName, category, sort, price} = params;
     const sortQuery = sort ? `&_sort=price&_order=${sort}` : '';
-    const response = await fetch(`http://localhost:5000/products?q=${filteredName}&category_like=${category}${sortQuery}`);
+    
+    const priceFrom = (price.priceFrom ? `&price_gte=${price.priceFrom}` : '');
+    const priceTo = (price.priceTo ? `&price_lte=${price.priceTo}` : '');
+    
+    
+    const response = await fetch(`http://localhost:5000/products?q=${filteredName}&category_like=${category}${sortQuery}${priceFrom}${priceTo}`);
         const result = await response.json();
         return result;
   },
