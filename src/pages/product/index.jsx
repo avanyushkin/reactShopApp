@@ -47,7 +47,7 @@ function Product() {
           </div>
           </div>
       </div>
-      <ProductComments />
+      <ProductComments productId={product.id}  />
     </>
   )
 }
