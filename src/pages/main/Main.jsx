@@ -4,7 +4,7 @@ import Navbar from '../../Components/navbar/index.jsx'
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import Sort from '../../Components/Sort/Sort.jsx'
-import { Drawer } from 'antd'
+import { Drawer, Pagination } from 'antd'
 
 function Main( {
     setPrice,
@@ -14,6 +14,7 @@ function Main( {
     handleChangeCategory,
     category,
     handleInput,
+    setPage,
   } ) {
     const [isOpenedMenu, setIsOpenedMenu] = useState(false);
     const {products, loading} = useSelector((state) => state.products);
@@ -42,6 +43,7 @@ function Main( {
           );
         })}
       </div>
+      <Pagination total={5} onChange={(page) => setPage(page)}/>
     </>
   );
 }

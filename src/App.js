@@ -15,13 +15,18 @@ function App() {
   const [filteredName, setFilteredName] = useState('');
   const [category, setCategory] = useState('');
   const [sort, setSort] = useState('asc');
+  const [page, setPage] = useState(1);
   const [price, setPrice] = useState({priceFrom: null, priceTo: null});
   console.log(price);
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(fetchProducts({ filteredName: filteredName, category: category, sort: sort, price: price}))
+    setPage(1)
   }, [filteredName, category, sort, price])
+
+  useEffect(() => {
+      dispatch(fetchProducts({ filteredName: filteredName, category: category, sort: sort, price: price, page: page}))
+  }, [filteredName, category, sort, price, page])
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -65,6 +70,7 @@ function App() {
           handleChangeCategory={handleChangeCategory}
           category={category}
           handleInput={handleInput}
+          setPage={setPage}
           />
         </>}/>
         
